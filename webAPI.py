@@ -58,5 +58,7 @@ class index:
         return json.dumps(return_dic)
 
 
+application = app.wsgifunc()
+
 if __name__ == "__main__":
     app.run()
