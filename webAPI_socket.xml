@@ -1,5 +1,5 @@
 <uwsgi>
-    <socket>:8077</socket>
+    <socket>:9000</socket>
     <chdir>/home/proxypool</chdir>
     <module>webAPI</module>
     <processes>1</processes> <!-- 进程数 -->

@@ -3,7 +3,9 @@
 import datetime
 from peewee import *
 
-proxypool_database = SqliteDatabase('proxypool.db')
+from setting import CURRENT_DIR
+
+proxypool_database = SqliteDatabase(CURRENT_DIR + '/proxypool.db')
 
 
 class Proxy_IP(Model):
@@ -21,8 +23,12 @@ class Proxy_IP(Model):
         return hash(str(self))
 
     def __eq__(self, other):
-        if isinstance(other,Proxy_IP):
+        if isinstance(other, Proxy_IP):
             return str(self) == str(other)
 
     class Meta:
         database = proxypool_database
+
+
+if __name__ == "__main__":
+    print(CURRENT_DIR + '/proxypool.db')

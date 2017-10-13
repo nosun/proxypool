@@ -22,7 +22,7 @@ class ProxySpider:
         spider.run()
         for proxy in spider.proxy_list:
             self.proxies.add(proxy)
-        logger.info("{}抓取完毕，抓取proxy{}个".format(spider.__class__.__name__, len(spider.proxy_list)))
+        logger.info("{} Finish,get proxies :{} ".format(spider.__class__.__name__, len(spider.proxy_list)))
 
     def run(self):
         for Spider in self.spider_list:
@@ -32,9 +32,10 @@ class ProxySpider:
 
 if __name__ == "__main__":
     db_init()
+    logger.info("-------Spider Start-------")
     proxyspider = ProxySpider()
     proxyspider.run()
     check_proxy = Check_proxy()
     check_proxy.proxies.extend(proxyspider.proxies)
     check_proxy.run()
-    logger.info("Spider Finish")
+    logger.info("-------Spider Finish-------")

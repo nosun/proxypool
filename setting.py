@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
+import os
 
 USER_AGENT_LIST = [
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"
@@ -29,3 +29,5 @@ IP_PROXY_REGEX = r'(((25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]
 TIME_OUT = 20
 
 RETRY_NUM = 3
+
+CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))

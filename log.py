@@ -4,6 +4,8 @@ import os
 import logging
 from logging.handlers import SMTPHandler
 
+from setting import CURRENT_DIR
+
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
@@ -14,8 +16,7 @@ logger_format = logging.Formatter(
     datefmt='%Y-%m-%d %H:%M:%S')
 console_handler.setFormatter(logger_format)
 logger.addHandler(console_handler)
-dir = os.path.dirname(os.path.realpath(__file__))
-file_handler = logging.FileHandler(dir+'/log.txt')
+file_handler = logging.FileHandler(CURRENT_DIR+'/log.txt')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(logger_format)
 logger.addHandler(file_handler)

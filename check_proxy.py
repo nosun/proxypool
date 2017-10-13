@@ -8,6 +8,7 @@ from gevent import monkey
 from requests.exceptions import ProxyError
 
 from db import delete_proxy_from_db, save_proxy_to_db
+from log import logger
 from proxy import Proxy_IP
 from tool import fetch
 
@@ -58,8 +59,10 @@ class Check_proxy:
 
 
 if __name__ == "__main__":
+    logger.info("-------Recheck Start-------")
     check_proxy = Check_proxy()
     check_proxy.recheck = True
     proxies = Proxy_IP.select()
     check_proxy.proxies.extend(proxies)
     check_proxy.run()
+    logger.info("-------Recheck Finish-------")

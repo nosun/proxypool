@@ -11,7 +11,7 @@ from tool import fetch
 class SixsixipSpider(BaseSpider):
     def __init__(self):
         super(SixsixipSpider,self).__init__()
-        urls = ["http://www.66ip.cn/{}.html".format(k) for k in range(1, 10)]
+        urls = ["http://www.66ip.cn/{}.html".format(k) for k in range(1, 100)]
         for url in urls:
             self.url_list.put(url)
 
