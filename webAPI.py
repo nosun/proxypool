@@ -15,7 +15,6 @@ urls = (
 app = web.application(urls, globals())
 
 
-
 class index:
     def GET(self):
         get_input = web.input(_method='get')
