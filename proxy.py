@@ -3,7 +3,7 @@
 import datetime
 from peewee import *
 
-proxypool_database = SqliteDatabase('/Users/huyong/code/python/spider/proxypool/proxypool.db')
+proxypool_database = SqliteDatabase('proxypool.db')
 
 
 class Proxy_IP(Model):
