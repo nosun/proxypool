@@ -37,3 +37,4 @@ if __name__ == "__main__":
     check_proxy = Check_proxy()
     check_proxy.proxies.extend(proxyspider.proxies)
     check_proxy.run()
+    logger.info("Spider Finish")

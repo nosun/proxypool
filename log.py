@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
+import os
 import logging
 from logging.handlers import SMTPHandler
 
@@ -14,6 +14,12 @@ logger_format = logging.Formatter(
     datefmt='%Y-%m-%d %H:%M:%S')
 console_handler.setFormatter(logger_format)
 logger.addHandler(console_handler)
+dir = os.path.dirname(os.path.realpath(__file__))
+file_handler = logging.FileHandler(dir+'/log.txt')
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logger_format)
+logger.addHandler(file_handler)
+
 mail_handler = SMTPHandler(
     mailhost='smtp.163.com',
     fromaddr='nghuyong@163.com',
