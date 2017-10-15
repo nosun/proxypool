@@ -17,10 +17,10 @@ proxypool是一个自动抓取免费代理并检测入库的程序，并提供�
 如果正常可以出现如下的截图：
 - 爬虫运行
 
-![爬虫运行](http://onqlxvamk.bkt.clouddn.com/HuYong/proxy_spider_screenshot.png)
+![爬虫运行](./screenshots/proxy_spider_screenshot.png)
 - 重新验证
 
-![重新验证](http://onqlxvamk.bkt.clouddn.com/HuYong/check_spider_screenshot.png)
+![重新验证](./screenshots/check_spider_screenshot.png)
 
 
 ## WebAPI
