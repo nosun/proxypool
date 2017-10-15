@@ -101,9 +101,6 @@ updatetime = proxy_result['updatetime']
 proxy_data = proxy_result['data']
 # 获取其中一个代理
 one_proxy = proxy_data[0]
-print("proxy_ip_and_port:{},type:{},country:{},anonymity:{},round_trip_time:{}".format(
-        one_proxy['ip_and_port'],one_proxy['type'],one_proxy['country'],one_proxy['anonymity'],one_proxy['round_trip_time']
-      ))
 # 爬虫加上代理
 requests.get("http://www.baidu.com",proxies={"http":one_proxy['type']+"://"+one_proxy['ip_and_port']})
 ```
