@@ -32,7 +32,7 @@ proxypool是一个自动抓取免费代理并检测入库的程序，并提供�
 另外，我在阿里云上部署了这个项目，每隔6小时会定时自动抓取／重新验证一遍代理，开放的API地址为:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
 
 ### API使用说明
-URL : http:127.0.0.1:8080 or http:proxy.nghuyong.top
+URL : [http://127.0.0.1:8080](http://127.0.0.1:8080) or [http://proxy.nghuyong.top](http://proxy.nghuyong.top)
 
 Method : GET
 
