@@ -5,7 +5,6 @@ import json
 import time
 
 import web
-from log import logger
 from proxy import Proxy_IP
 
 urls = (
@@ -18,8 +17,7 @@ app = web.application(urls, globals())
 class index:
     def GET(self):
         get_input = web.input(_method='get')
-        query_country = query_anonymity = query_all = None
-        query_number = 100
+        query_country = query_anonymity = query_number = None
         try:
             query_country = get_input.country
         except:
@@ -30,10 +28,6 @@ class index:
             pass
         try:
             query_number = get_input.number
-        except:
-            pass
-        try:
-            query_all= get_input.all
         except:
             pass
         proxies = Proxy_IP.select().order_by(Proxy_IP.timestamp)
@@ -56,8 +50,9 @@ class index:
             one_proxy_data_dic = {"ip_and_port": proxy.ip_and_port, "country": proxy.country, "type": proxy.type,
                                   "anonymity": proxy.anonymity, "round_trip_time": proxy.round_trip_time}
             data.append(one_proxy_data_dic)
-            if query_all is None and query_number < len(data):
-                data = data[0:query_number]
+            if query_number:
+                if query_number < len(data):
+                    data = data[0:query_number]
         return_dic = {"num": len(data), "updatetime": updatetime, "data": data}
         return json.dumps(return_dic)
 

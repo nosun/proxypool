@@ -2,7 +2,7 @@
 # encoding: utf-8
 import os
 import logging
-from logging.handlers import SMTPHandler
+from logging.handlers import SMTPHandler, TimedRotatingFileHandler
 
 from setting import CURRENT_DIR
 
@@ -16,7 +16,8 @@ logger_format = logging.Formatter(
     datefmt='%Y-%m-%d %H:%M:%S')
 console_handler.setFormatter(logger_format)
 logger.addHandler(console_handler)
-file_handler = logging.FileHandler(CURRENT_DIR+'/log.txt')
+file_handler = TimedRotatingFileHandler(filename=CURRENT_DIR+'/log/log.txt',when="midnight",backupCount=10)
+file_handler.suffix = "%Y-%m-%d.txt"
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(logger_format)
 logger.addHandler(file_handler)

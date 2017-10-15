@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import time
+from json import JSONDecodeError
 
 import requests
 from bs4 import BeautifulSoup
@@ -47,9 +48,13 @@ class Check_proxy:
                     if self.recheck:
                         delete_proxy_from_db(proxy)
                     return
-                proxy.country = response.json()['country']
-                proxy.round_trip_time = fetch_result['round_trip_time']
-                save_proxy_to_db(proxy)
+                try:
+                    proxy.country = response.json()['country']
+                    proxy.round_trip_time = fetch_result['round_trip_time']
+                    save_proxy_to_db(proxy)
+                except JSONDecodeError:
+                    delete_proxy_from_db(proxy)
+                    return
                 break
 
     def run(self, ):

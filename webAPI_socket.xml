@@ -3,5 +3,5 @@
     <chdir>/home/proxypool</chdir>
     <module>webAPI</module>
     <processes>1</processes> <!-- 进程数 -->
-    <daemonize>uwsgi.txt</daemonize>
+    <daemonize>log/uwsgi.txt</daemonize>
 </uwsgi>

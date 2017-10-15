@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import datetime
-
 from peewee import DoesNotExist
-
 from log import logger
 from proxy import Proxy_IP, proxypool_database
 
