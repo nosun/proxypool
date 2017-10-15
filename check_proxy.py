@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from gevent import monkey
 from requests.exceptions import ProxyError
 from db import delete_proxy_from_db, save_proxy_to_db
+from log import logger
 from proxy import Proxy_IP
 from tool import fetch
 

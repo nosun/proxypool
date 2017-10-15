@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 .idea/*
-
+log/*
 # C extensions
 *.so
 *.db
