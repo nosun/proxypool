@@ -17,7 +17,7 @@ app = web.application(urls, globals())
 class index:
     def GET(self):
         get_input = web.input(_method='get')
-        query_country = query_anonymity = query_number = None
+        query_country = query_anonymity = query_number = query_type = None
         try:
             query_country = get_input.country
         except:
@@ -28,6 +28,10 @@ class index:
             pass
         try:
             query_number = get_input.number
+        except:
+            pass
+        try:
+            query_type = get_input.type
         except:
             pass
         proxies = Proxy_IP.select().order_by(Proxy_IP.timestamp)
@@ -42,6 +46,9 @@ class index:
         for proxy in proxies:
             if query_country:
                 if proxy.country != query_country:
+                    continue
+            if query_type:
+                if proxy.type != query_type:
                     continue
             if query_anonymity:
                 print(query_anonymity)
