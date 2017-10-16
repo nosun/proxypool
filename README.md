@@ -29,7 +29,7 @@ proxypool是一个自动抓取免费代理并检测入库的程序，并提供�
     python webAPI.py 8080
 此时访问http:127.0.0.1:8080就可以调用WebAPI了.
 
-另外，我在阿里云上部署了这个项目，每隔6小时会定时自动抓取／重新验证一遍代理，开放的API地址为:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
+另外，我在阿里云上部署了这个项目，每隔6小时会定时自动抓取/重新验证一遍代理，开放的API地址为:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
 
 ### API使用说明
 URL : [http://127.0.0.1:8080](http://127.0.0.1:8080) or [http://proxy.nghuyong.top](http://proxy.nghuyong.top)
@@ -83,7 +83,7 @@ Return : json格式，形如：
 | anonymity     | char          |代理的匿名情况:transparent:透明；normal_anonymity:匿名；high_anonymity:高匿|
 
 请求的参数举例说明：
-- ／ : 将返回数据库中的所有代理
+- / : 将返回数据库中的所有代理
 - /?country=China :针对国家的条件进行结果过滤
 - /?type=http :针对代理类型进行结果过滤
 - /?anonymity=normal_anonymity :将返回匿名程度**大于等于**查询条件的代理，其中transparent<normal_anonymity<high_anonymity
