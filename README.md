@@ -2,7 +2,7 @@
 proxypool是一个自动抓取免费代理并检测入库的程序，并提供开放的实时API服务:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
 
 ## 使用
-本项目采用python3.x进行开发，建议使用virtualenv
+本项目采用python3进行开发，建议使用virtualenv
 
     # 下载源码
     git clone https://github.com/SimpleBrightMan/proxypool.git
