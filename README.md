@@ -1,8 +1,8 @@
 # proxypool
-[中文版本](README.md)
+[中文版本](README_zh.md)
 
 Proxypool is a project  to spider free proxies and check them whether are still useful in a regular interval.
-What's more , it provide an open Web-API service:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
+What's more , it provide an open Web-API service: [proxypool-open-WebAPI](http://proxy.nghuyong.top/)
 
 ## Clone and Use
 This project is developed based on python3 and you'd better use virtualenv
@@ -17,7 +17,7 @@ This project is developed based on python3 and you'd better use virtualenv
     # recheck proxies
     python check_proxy.py
    
-If everything is ok , it may appear the screenshots as follows ：
+If everything is ok , it may appear the screenshots as follows：
 - run spider
 
 ![爬虫运行](./screenshots/proxy_spider_screenshot.png)
