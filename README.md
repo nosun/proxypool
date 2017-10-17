@@ -1,42 +1,45 @@
 # proxypool
-proxypool是一个自动抓取免费代理并检测入库的程序，并提供开放的实时API服务:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
+[中文版本](README.md)
 
-## 使用
-本项目采用python3进行开发，建议使用virtualenv
+Proxypool is a project  to spider free proxies and check them whether are still useful in a regular interval.
+What's more , it provide an open Web-API service:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
 
-    # 下载源码
+## Clone and Use
+This project is developed based on python3 and you'd better use virtualenv
+
+    # clone project 
     git clone https://github.com/SimpleBrightMan/proxypool.git
     cd proxypool
-    # 安装依赖
+    # install requriements
     pip install -r requirements.txt
-    # 爬虫运行
+    # run spider
     python proxy_spider.py
-    # 重新验证
+    # recheck proxies
     python check_proxy.py
    
-如果正常可以出现如下的截图：
-- 爬虫运行
+If everything is ok , it may appear the screenshots as follows ：
+- run spider
 
 ![爬虫运行](./screenshots/proxy_spider_screenshot.png)
-- 重新验证
+- recheck proxies
 
 ![重新验证](./screenshots/check_spider_screenshot.png)
 
 
 ## WebAPI
 
-    # 启动webAPI
+    # run webAPI
     python webAPI.py 8080
-此时访问http:127.0.0.1:8080就可以调用WebAPI了.
+Then visit [http://127.0.0.1:8080](http://127.0.0.1:8080),and you can call the Web-API.
 
-另外，我在阿里云上部署了这个项目，每隔6小时会定时自动抓取/重新验证一遍代理，开放的API地址为:[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
+In addition, I have deployed this project on my server, it will auto spider and recheck the proxies every 6 hours , the open API URL is :[proxypool-open-WebAPI](http://proxy.nghuyong.top/)
 
-### API使用说明
+### Instruction for Web-API
 URL : [http://127.0.0.1:8080](http://127.0.0.1:8080) or [http://proxy.nghuyong.top](http://proxy.nghuyong.top)
 
 Method : GET
 
-Return : json格式，形如：
+Return : json format,liking：
 
     {
         num: 692,
@@ -66,41 +69,40 @@ Return : json格式，形如：
             ...
         ]
     }
-
-返回json参数说明：
-
+the explanation of the return json args：
 
 
-| 参数            | 类型            | 说明   |
+
+| agrs           | format       | description   |
 |:--------------:|:-------------:|:-----:|
-| num           | int           | 返回代理IP的总数|
-| updatetime    | char          | 最后一次更新时间 |
-| data          | list          | 代理IP数据 |
-| type          | char          |该代理的类型|
-| round_trip_time|double        |针对测试网站使用该代理请求往返时间|
-| ip_and_port   | char          |代理的IP和端口|
-| country       | char          |代理所在的国家|
-| anonymity     | char          |代理的匿名情况:transparent:透明；normal_anonymity:匿名；high_anonymity:高匿|
+| num           | int           | the sum of the return proxies|
+| updatetime    | char          | the latest update time |
+| data          | list          | proxies data |
+| type          | char          | the type of the proxy|
+| round_trip_time|double        |the round-trip-time of using the proxy to request the test website|
+| ip_and_port   | char          |the ip and port of  the proxy|
+| country       | char          |the country of the proxy|
+| anonymity     | char          |the anonymity of the proxy, this arg can be transparent, normal_anonymity and high_anonymity|
 
-请求的参数举例说明：
-- / : 将返回数据库中的所有代理
-- /?country=China :针对国家的条件进行结果过滤
-- /?type=http :针对代理类型进行结果过滤
-- /?anonymity=normal_anonymity :将返回匿名程度**大于等于**查询条件的代理，其中transparent<normal_anonymity<high_anonymity
-- /?num=100 :将按代理的匿名和往返时间排序，返回前100个代理
+the args for request this Web-API：
+- /: it will return all the proxies
+- /?country=China: it will return proxies of specific country 
+- /?type=http: it will return proxies of specific type 
+- /?anonymity=normal_anonymity: it will return proxies whose anonymity-level are higher than or equal to the query anonymity，and the anonymity-level is :transparent<normal_anonymity<high_anonymity
+- /?num=100: it will return the top 100 proxies sorted by anonymity and round-trip-time.
 
-另外这些查询条件可以组合使用，比如：/?country=China&anonymity=high_anonymity&num=10 将返回中国的10个高匿代理
+And these query args can be used in a group, for example：/?country=China&anonymity=high_anonymity&num=10 , and it will return 10 proxies whose country is China and anonymity is high-anonymity.
 
-### 在你的爬虫项目中使用该WebAPI
+### Use the Web-API in your spider project 
 ```python
 import requests
-# 请求API，并解析json成dictionary
+# request the API，and parse json to dictionary
 proxy_result = requests.get("http://proxy.nghuyong.top").json()
 num = proxy_result['num']
 updatetime = proxy_result['updatetime']
 proxy_data = proxy_result['data']
-# 获取其中一个代理
+# get a proxy
 one_proxy = proxy_data[0]
-# 爬虫加上代理
+# add the proxy to a request
 requests.get("http://www.baidu.com",proxies={"http":one_proxy['type']+"://"+one_proxy['ip_and_port']})
 ```
