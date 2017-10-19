@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 from gevent import monkey
-
 monkey.patch_all()
 from check_proxy import Check_proxy
 from log import logger
 from db import db_init
 from spider.proxylists_spider import ProxylistSpider
+from spider.xicidaili import XicidailiSpider
 from spider.sixsixip_spider import SixsixipSpider
 from gevent.pool import Pool
 
@@ -15,7 +15,7 @@ class ProxySpider:
     def __init__(self):
         self.pool = Pool(size=100)
         self.proxies = set()
-        self.spider_list = [ProxylistSpider, SixsixipSpider]
+        self.spider_list = [XicidailiSpider,ProxylistSpider,SixsixipSpider]
 
     def add_spider(self, Spider):
         spider = Spider()

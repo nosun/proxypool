@@ -14,7 +14,7 @@ class BaseSpider:
     def __init__(self, start_url=None):
         self.start_url = start_url
         self.proxy_list = set()
-        self.pool = Pool(size=10)
+        self.pool = Pool(size=20)
         self.url_list = Queue()
 
     def list_loop(self):

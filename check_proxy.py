@@ -22,7 +22,7 @@ class Check_proxy:
         self.recheck = False
         self.proxies = []
 
-    def _check_one_proxy(self, proxy):
+    def _check_one_http_proxy(self, proxy):
         check_anonymity_url = "http://www.xxorg.com/tools/checkproxy/"
         fetch_result = fetch(check_anonymity_url, proxy)
         response = fetch_result['response']
@@ -55,6 +55,31 @@ class Check_proxy:
                     delete_proxy_from_db(proxy)
                     return
                 break
+
+    def _check_one_https_proxy(self, proxy):
+        testURL = "https://book.douban.com/"
+        fetch_result = fetch(url=testURL, proxy=proxy, proxy_type='https')
+        response = fetch_result['response']
+        if response is None:
+            logger.info('response is None , proxy:{}'.format(proxy))
+            if self.recheck:
+                delete_proxy_from_db(proxy)
+            return
+        response.encoding = 'utf-8'
+        html = response.text
+        if "豆瓣读书,新书速递,畅销书,书评,书单" in html:
+            proxy.round_trip_time = fetch_result['round_trip_time']
+            save_proxy_to_db(proxy)
+        else:
+            if self.recheck:
+                delete_proxy_from_db(proxy)
+            return
+
+    def _check_one_proxy(self, proxy):
+        if proxy.type == 'http':
+            self._check_one_http_proxy(proxy)
+        else:
+            self._check_one_https_proxy(proxy)
 
     def run(self, ):
         for proxy in self.proxies:

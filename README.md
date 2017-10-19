@@ -20,10 +20,10 @@ This project is developed based on python3 and you'd better use virtualenv
 If everything is ok , it may appear the screenshots as follows：
 - run spider
 
-![爬虫运行](./screenshots/proxy_spider_screenshot.png)
+![run spider](./screenshots/proxy_spider_screenshot.png)
 - recheck proxies
 
-![重新验证](./screenshots/check_spider_screenshot.png)
+![recheck proxies](./screenshots/check_spider_screenshot.png)
 
 
 ## WebAPI

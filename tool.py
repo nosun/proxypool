@@ -9,7 +9,7 @@ from proxy import Proxy_IP
 from setting import USER_AGENT_LIST, TIME_OUT, RETRY_NUM
 
 
-def fetch(url, proxy=None):
+def fetch(url, proxy=None, proxy_type='http'):
     kwargs = {
         "headers": {
             "User-Agent": random.choice(USER_AGENT_LIST),
@@ -22,7 +22,7 @@ def fetch(url, proxy=None):
         try:
             if proxy is not None:
                 kwargs["proxies"] = {
-                    "http": str(proxy)}
+                    proxy_type: str(proxy)}
             start = time.time()
             response = requests.get(url, **kwargs)
             end = time.time()
